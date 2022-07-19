@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>
+        {% block page_title %}
+        {% endblock %}
+    </title>
+
+    <h1 style="background-color: #fae29c;">
+        <a style="text-decoration: none; color: black;" href="{{ url_for('home_page') }}">
+        Website Title
+        </a>
+        <div style="text-align: right;">
+            {{ current_date }}
+        </div>
+        <div style="text-align: right;"> 
+            {{ current_time }}
+        </div>
+    </h1>
+
+    <div style="background-color: #8DD7BF; display: flex; justify-content: space-evenly">
+        <a href="{{ url_for('home_page') }}"> Home / View current feed </a>
+        <a href="{{ url_for('message_page') }}"> Messages </a>
+        <a href="{{ url_for('register_page') }}">Register</a>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+</html>
