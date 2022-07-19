@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>
+        Register for an account
+    </title>
+
+    <h1 style="background-color: #fae29c;">
+        <a style="text-decoration: none; color: black;" href="{{ url_for('home_page') }}">
+        Website Title
+        </a>
+        <div style="text-align: right;">
+            {{ current_date }}
+        </div>
+        <div style="text-align: right;"> 
+            {{ current_time }}
+        </div>
+    </h1>
+
+    <div style="background-color: #8DD7BF; display: flex; justify-content: space-evenly; text-align: center;">
+        <h2>Please register for an account to continue</h2>
+    </div>
+
+    {% block content %}
+    <form action="register" method="POST">
+        {{ info.csrf_token }}
+        <p>{{ info.username.label }}: {{ info.username() }}</p>
+        <p>{{ info.email_address.label }}: {{ info.email_address() }}</p>
+        <p>{{ info.password1.label }}: {{ info.password1() }}</p>
+        <p>{{ info.password2.label }}: {{ info.password2() }}</p>
+        {{ info.submit() }}
+        {% with messages = get_flashed_messages() %}
+         {% if messages %}
+            <ul class="flashes">
+            {% for message in messages %}
+                <li>{{message}}</li>
+            {% endfor %}
+            </ul>
+         {% endif %}
+        {% endwith %}
+    </form>
+    {% endblock %}
+
+
+
+</html>
