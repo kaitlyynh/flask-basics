@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block page_title %}
+Homepage
+{% endblock page_title %}
+
+{% block content %}
+    <form method="post">
+        {{ make_post.csrf_token }}
+        {{ make_post.body.label}}
+        {{ make_post.body()}}   
+        {{ make_post.submit_post()}}
+    </form>
+    <br/>
+    <table style="margin-left: auto; margin-right: auto; border: 5px solid black">
+        <tr> 
+            <th>Recently Posted</th>
+        </tr>
+        {% for i in range(feed|length, -1 , -1) %}
+        <tr>
+            <td>
+                {% if feed[i] != ' ' %}
+                <p>{{ feed[i] }} -------> posted at {{ current_time }}, {{ current_date_raw }}</p>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock content %}
